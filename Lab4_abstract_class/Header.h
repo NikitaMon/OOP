@@ -9,36 +9,36 @@ class Figure
 {
 public:
 
-	//конструктор по умолчания
+	//РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 	Figure() {
 
 	}
 
-	//конструктор с двумя значениями
+	//РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃ РґРІСѓРјСЏ Р·РЅР°С‡РµРЅРёСЏРјРё
 	Figure(double x1, double y1) {
 
 	}
 
-	//конструктор с одним значением
+	//РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃ РѕРґРЅРёРј Р·РЅР°С‡РµРЅРёРµРј
 	Figure(double x1)
 	{
 
 	}
 
-	//полностью абстрактные функции 
-	//для работы с ними требуется переопределение 
+	//РїРѕР»РЅРѕСЃС‚СЊСЋ Р°Р±СЃС‚СЂР°РєС‚РЅС‹Рµ С„СѓРЅРєС†РёРё 
+	//РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РЅРёРјРё С‚СЂРµР±СѓРµС‚СЃСЏ РїРµСЂРµРѕРїСЂРµРґРµР»РµРЅРёРµ 
 	
-	//функции
+	//С„СѓРЅРєС†РёРё
 	virtual double area() = 0;
 	virtual double perimeter() = 0;
 
-	//геттеры
+	//РіРµС‚С‚РµСЂС‹
 	virtual double getX() const = 0;
 	virtual double getY() const = 0;
 	virtual double getZ() const = 0;
 	virtual string getName() const = 0;
 
-	//сеттеры
+	//СЃРµС‚С‚РµСЂС‹
 	virtual void setX(double x1) = 0;
 	virtual void setY(double y1) = 0;
 	virtual void setZ(double z1) = 0;
@@ -47,7 +47,7 @@ public:
 
 
 /*
-*	класс треугольника
+*	РєР»Р°СЃСЃ С‚СЂРµСѓРіРѕР»СЊРЅРёРєР°
 */
 class Triangle :public Figure
 {
@@ -63,14 +63,14 @@ public:
 		x = 0;
 		y = 0;
 		z = 0;
-		setName("Неизветно");
+		setName("РќРµРёР·РІРµС‚РЅРѕ");
 	}
 
 	Triangle(double x1, double y1) :Figure(x1, y1)
 	{
 		setX(x1);
 		setY(y1);
-		setName("Треугольник");
+		setName("РўСЂРµСѓРіРѕР»СЊРЅРёРє");
 		setZ((sqrt(x1 * x1 + y1 * y1 - 2 * x1 * y1 * cos(90 * M_PI / 180))));
 	}
 
@@ -78,11 +78,11 @@ public:
 	{
 		setX(x1);
 		setY(x1);
-		setName("Треугольник две стороны равны");
+		setName("РўСЂРµСѓРіРѕР»СЊРЅРёРє РґРІРµ СЃС‚РѕСЂРѕРЅС‹ СЂР°РІРЅС‹");
 		setZ((sqrt(x1 * x1 + getY() * getY() - 2 * x1 * getY() * cos(90 * M_PI / 180))));
 	}
 
-	//виртуальные функции
+	//РІРёСЂС‚СѓР°Р»СЊРЅС‹Рµ С„СѓРЅРєС†РёРё
 	double area()override {
 		return getX() * getY() / 2;
 	}
@@ -91,30 +91,30 @@ public:
 		return getX() + getY() + getZ();
 	}
 
-	//гетеры
+	//РіРµС‚С‚РµСЂС‹
 	double getX() const override { return x; };
 	double getY() const override { return y; };
 	double getZ() const override { return z; };
 	string getName() const override { return name; };
 
-	//сетеры
+	//СЃРµС‚С‚РµСЂС‹
 	void setX(double x1)override {
 		if (x1 <= 0)
-			throw invalid_argument{ "Сторона X не может быть равна или меньше 0" };//обработка исключения
+			throw invalid_argument{ "РЎС‚РѕСЂРѕРЅР° X РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ СЂР°РІРЅР° РёР»Рё РјРµРЅСЊС€Рµ 0" };//РѕР±СЂР°Р±РѕС‚РєР° РёСЃРєР»СЋС‡РµРЅРёСЏ
 		else
 			x = x1;
 	}
 
 	void setY(double y1)override {
 		if (y1 <= 0)
-			throw invalid_argument{ "Сторона Y не может быть равна или меньше 0" };
+			throw invalid_argument{ "РЎС‚РѕСЂРѕРЅР° Y РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ СЂР°РІРЅР° РёР»Рё РјРµРЅСЊС€Рµ 0" };
 		else
 			y = y1;
 	}
 
 	void setZ(double z1)override {
 		if (z1 <= 0)
-			throw invalid_argument{ "Сторона Z не может быть равна или меньше 0" };
+			throw invalid_argument{ "РЎС‚РѕСЂРѕРЅР° Z РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ СЂР°РІРЅР° РёР»Рё РјРµРЅСЊС€Рµ 0" };
 		else
 			z = z1;
 	}
