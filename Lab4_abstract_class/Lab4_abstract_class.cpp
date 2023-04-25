@@ -7,8 +7,9 @@ int main()
 {
 	setlocale(LC_ALL, "russian");
 
-Figure:Triangle a[5];
+	Figure:Triangle a[5];//создание массива класса
 
+	//присвоение им различных значений и проверка
 	try {
 		a[0] = Triangle(3, 4);
 	}
