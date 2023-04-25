@@ -9,32 +9,36 @@ class Figure
 {
 public:
 
-	//конструктор по умолчанию
+	//конструктор по умолчания
 	Figure() {
 
 	}
 
-	//конструктор с присваиванием параметров двух сторон
+	//конструктор с двумя значениями
 	Figure(double x1, double y1) {
 
 	}
 
+	//конструктор с одним значением
 	Figure(double x1)
 	{
 
 	}
 
-	//виртуальные функции
+	//полностью абстрактные функции 
+	//для работы с ними требуется переопределение 
+	
+	//функции
 	virtual double area() = 0;
 	virtual double perimeter() = 0;
 
-	//гетеры
+	//геттеры
 	virtual double getX() const = 0;
 	virtual double getY() const = 0;
 	virtual double getZ() const = 0;
 	virtual string getName() const = 0;
 
-	//сетеры
+	//сеттеры
 	virtual void setX(double x1) = 0;
 	virtual void setY(double y1) = 0;
 	virtual void setZ(double z1) = 0;
