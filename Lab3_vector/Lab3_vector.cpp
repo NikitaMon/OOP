@@ -1,114 +1,41 @@
-﻿#include <iostream>
-#include <vector>
-#include <fstream>
+﻿#include "Header.h"
 
-using namespace std;
-
-// создание синонима для типа vector<int>
-using vector_int = vector<int>;
-// vector -- класс-обёртка для динамического массива
-// vector -- шаблонный класс, поэтому поддерживает задание типа
-// для вложенных в него значений (здесь это элементы массива). 
-// Тип вложенных значений указывается внутри угловых скобок 
-// < > при объявлении переменой типа vector
-
-
-/// вывод динамического массива
-void print_vector(const vector_int& v) {
-    // вектор передаётся по ссылке чтобы избежать лишнего копирования
-    // т.к. эта функция не должна менять вектор, то делаем формальный параметр константой
-    // фактический параметр не обязательно должен быть константой
-    for (int i = 0; i < v.size(); ++i)
-        cout << v[i] << " ";
-    cout << endl;
-}
-
-
-/*
-* функция для того чтобы "перемешать" все значения
-* цикл который выбирает случайное число r из вектора nv
-* и присваивает его значение в изначальный вектор который поступает в функцию по адресу
-* поэтому значение изменится и в main функции без присваивания значений
-*/
-void rnd(vector_int& v) {
-    vector_int nv;//создание нового вектора
-    nv = v;       //присвоение ему значений изначального вектора (создание копии)
-    int r;  //случайное число в цикле
-
-    for (int i = 0; 0 < nv.size(); i++)
-    {
-        r = rand() % nv.size();
-        v[i] = nv[r];
-        nv.erase(nv.begin() + r);
-    }
-    nv.clear();//освобождение памяти от вектора
-}
-
-
-/*
-* вставляет число int a в случайное место в векторе
-*/
-void rnd_add(vector_int& v, int a) {
-
-    int r;  //случайное число
-    r = rand() % (v.size() + 1);
-    v.insert(v.begin() + r, a);
-}
-
-
-/*
-* запись в файл
-*/
-void savevec(vector_int& v)
-{
-    ofstream f;		//открываем файл в режиме записи
-    f.open("text.txt", ios::out);
-    if (!f.is_open()) { cout << "Ошибка"; return; }
-
-    for (int i = 0; i < v.size(); ++i)//цикл записи
-        f << " " << v[i];
-
-    //copy(v.begin(), v.end(), std::ostream_iterator<int>(cout, " ")); хотел так но не получилось
-    f.close();//закрытие потока
-}
-
-/*
-* чтение из файла
-*/
-void loadvec(vector_int& v)
-{
-    ifstream f;		//открываем файл в режиме чтения
-    int scan;
-    v.clear();//если чтото было очистит
-
-    f.open("text.txt", ios::app);
-    if (!f.is_open()) { cout << "Ошибка"; return; }
-
-    while (!f.eof())//пока не закончится файл читать или не найдёт число которое уже есть такое число
-    {
-        f >> scan;
-        v.push_back(scan);
-    }
-    f.close();//закрытие потока
-}
 
 int main() {
     srand(time(NULL));//убрать псевдослучайные числа rand
+    setlocale(LC_ALL, "russian");
 
-    vector_int arr{ 1,6,4,2,8 };  // динамический массив
+    vector_int arr;  // динамический массив
     vector_int vec;
-
+    int c;//размер массива
     unsigned n = arr.size();    // -> размер
 
-    rnd(arr);
+	while (1) {//ничего лучше этого я не придумал
+		try
+		{
+			cout << "Введите размер массива" << endl;
+			cin >> c;
+			if (c <= 0)
+				throw invalid_argument{ "Нужно значение больше нуля." };
+			break;
 
-    rnd_add(arr, 99);//добавить элемент 99 в случайное место вектора
+		}
+		catch (invalid_argument& e)
+		{
+			cout << e.what() << endl;
+		}
+	}
+
+    arr.resize(c);
+    rand_vector(arr);
     print_vector(arr);
+    
+    cout << vec_sum(arr);
 
-    savevec(arr);//сохранение arr
+    //savevec(arr);//сохранение arr
 
-    loadvec(vec);//и загрузка из файла в vec
-    print_vector(vec);
+    //loadvec(vec);//и загрузка из файла в vec
+    //print_vector(vec);
 
 
     arr.clear();                // освобождение памяти 
