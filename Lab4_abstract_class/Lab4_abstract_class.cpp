@@ -5,60 +5,40 @@ using namespace std;
 
 int main()
 {
-	setlocale(LC_ALL, "russian");
+	setlocale(LC_ALL, "Russian");
 
-	Figure:Triangle a[5];//создание массива класса
 
+	//задано в таком виде чтобы данные при ошибке были из конструктора по умолчанию
+	//если объявить по другому то будет ошибка в строках 35-42 обращение к несуществующим элементам
+	Figure:Triangle a[1];//создание массива класса
+
+	int x = 0;
+	int y = 0;
+	cout << "введите сторону X: ";
+	cin >> x;
+	cout << "введите сторону Y: ";
+	cin >> y;
 	//присвоение им различных значений и проверка
 	try {
-		a[0] = Triangle(3, 4);
+		if (x == y)
+			a[0] = Triangle(x);
+		else
+			a[0] = Triangle(x,y);
 	}
 	catch (invalid_argument& e) {
 		cout << "a[0]" << endl;
 		cout << e.what() << endl;
 	}
 
-	try {
-		a[1] = Triangle(0);
-	}
-	catch (invalid_argument& e) {
-		cout << "a[1]" << endl;
-		cout << e.what() << endl;
-	}
-
-	try {
-		a[2] = Triangle(0, 3);
-	}
-	catch (invalid_argument& e) {
-		cout << "a[2]" << endl;
-		cout << e.what() << endl;
-	}
-
-	try {
-		a[3] = Triangle(5);
-	}
-	catch (invalid_argument& e) {
-		cout << "a[3]" << endl;
-		cout << e.what() << endl;
-	}
-
-	try {
-		a[4] = Triangle(5, -4);
-	}
-	catch (invalid_argument& e) {
-		cout << "a[4]" << endl;
-		cout << e.what() << endl;
-	}
 	cout << endl;
 
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 1; i++)
 	{
 		cout << "Номер " << i << endl;
 		cout << a[i].getName() << endl;
 		cout << "Стороны равны " << a[i].getX() << ", " << a[i].getY() << ", " << a[i].getZ() << endl;
 		cout << "Площадь равна " << a[i].area() << endl;
 		cout << "Периметр равен " << a[i].perimeter() << endl << endl;
-
 	}
 
 	return 0;

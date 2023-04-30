@@ -8,7 +8,7 @@ using namespace std;
 class Figure
 {
 public:
-
+	
 	//конструктор по умолчанию
 	Figure() {
 
@@ -63,7 +63,7 @@ public:
 		x = 0;
 		y = 0;
 		z = 0;
-		setName("Неизветно");
+		setName("Неизвестно");
 	}
 
 	Triangle(double x1, double y1) :Figure(x1, y1)
