@@ -1,3 +1,4 @@
+//јвтор - ћонастыршин Ќикита
 #pragma once
 #include <iostream>
 using namespace std;
@@ -35,13 +36,16 @@ public:
 	//дл€ оптимизации программы возвращают не значение переменной а адрес
 	//и чтобы случайно не изменить значение приватной переменной с помощью гетера добавл€ют const
 	//что запретит подобные махинации
-	const double getX() { return x; }
-	const double getY() { return y; }
-	const double getZ() { return z; }
-	const string getName() { return name; }
+	const double &getX() { return x; }
+	const double &getY() { return y; }
+	const double &getZ() { return z; }
+	const string &getName() { return name; }
 	
+	/*
 	//пример плохого гетера
+	//(продолжение в Lab2_simple_class.cpp) 
 	double &getXadr() { return x; }
+	*/
 
 	//protected чтобы не вызывались в main
 protected:

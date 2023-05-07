@@ -1,3 +1,4 @@
+//Автор - Монастыршин Никита
 #include "Class.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
@@ -6,7 +7,7 @@
 //конструктор по умолчанию
 Triangle::Triangle()
 {
-	name = "Неизветно";
+	name = "Неизвеcтно";
 	x = 0;
 	y = 0;
 	z = 0;
