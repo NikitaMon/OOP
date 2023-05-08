@@ -24,6 +24,7 @@ public:
 	//конструкторы
 	Triangle();
 	Triangle(double x1, double y1);
+	
 
 	//функция площади
 	double Area();

@@ -1,6 +1,7 @@
 ﻿//Автор - Монастыршин Никита
 #include <iostream>
 #include "Class.h"
+#include "Function.h"
 
 using namespace std;
 
@@ -10,17 +11,28 @@ int main()
 
 	Triangle a[1];
 	
-	
-	try//проверка значений
+	double x, y;
+	//предположим эти значения вводит пользователь
+	x = 6;
+	y = 8;
+
+	//если подобный запрос уже был то его загрузит из файла по сохранённым данным
+	a[0] = loadTriangle(x, y);
+
+	if (a[0].getName() == "Неизвеcтно")//если имя не изменилось значит файла не было
 	{
-		a[0] = Triangle(3, 4);
-	}
-	catch (invalid_argument& e)
-	{
-		cout << e.what() << endl;
+		try//проверка значений
+		{
+			a[0] = Triangle(x, y);
+			cout << "Сохранение.." << endl;
+			saveTriangle(a[0]);
+		}
+		catch (invalid_argument& e)
+		{
+			cout << e.what() << endl;
+		}
 	}
 
-	
 	cout << a[0].getName() << endl;
 	cout << "Стороны равны " << a[0].getX() << ", " << a[0].getY() << ", " << a[0].getZ() << endl;
 	cout << "Площадь равна " << a[0].Area() << endl;
