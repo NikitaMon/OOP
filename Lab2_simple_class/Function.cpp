@@ -1,4 +1,4 @@
-//Автор - Монастыршин Никита
+//РђРІС‚РѕСЂ - РњРѕРЅР°СЃС‚С‹СЂС€РёРЅ РќРёРєРёС‚Р°
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -8,9 +8,9 @@
 using namespace std;
 
 /*
-* запись в файл
-* -1 файл не открыт
-*  0 файл открыт
+* Р·Р°РїРёСЃСЊ РІ С„Р°Р№Р»
+* -1 С„Р°Р№Р» РЅРµ РѕС‚РєСЂС‹С‚
+*  0 С„Р°Р№Р» РѕС‚РєСЂС‹С‚
 */
 int saveTriangle(Triangle a)
 {
@@ -18,44 +18,44 @@ int saveTriangle(Triangle a)
 	string y = to_string(a.getY());
 	x.erase(remove(x.begin(), x.end(), ','), x.end());
 	y.erase(remove(y.begin(), y.end(), ','), y.end());
-	string name = "text" + x + y + ".txt";//название файла
+	string name = "text" + x + y + ".txt";//РЅР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р°
 
-	ofstream f;		//открываем файл в режиме записи
+	ofstream f;		//РѕС‚РєСЂС‹РІР°РµРј С„Р°Р№Р» РІ СЂРµР¶РёРјРµ Р·Р°РїРёСЃРё
 	f.open(name, ios::out);
 	if (!f.is_open()) { return -1; }
 
 	f << a.getX() << " " << a.getY();
 
-	f.close();//закрытие потока
+	f.close();//Р·Р°РєСЂС‹С‚РёРµ РїРѕС‚РѕРєР°
 	return 0;
 }
 
 /*
-* чтение из файла
+* С‡С‚РµРЅРёРµ РёР· С„Р°Р№Р»Р°
 */
 Triangle loadTriangle(double a, double b)
 {
-	string x = to_string(a);//перевод значений в стринг
+	string x = to_string(a);//РїРµСЂРµРІРѕРґ Р·РЅР°С‡РµРЅРёР№ РІ СЃС‚СЂРёРЅРі
 	string y = to_string(b);
 
-	x.erase(remove(x.begin(), x.end(), ','), x.end());//если число с не целое то знак ',' будет удалён
+	x.erase(remove(x.begin(), x.end(), ','), x.end());//РµСЃР»Рё С‡РёСЃР»Рѕ СЃ РЅРµ С†РµР»РѕРµ С‚Рѕ Р·РЅР°Рє ',' Р±СѓРґРµС‚ СѓРґР°Р»С‘РЅ
 	y.erase(remove(y.begin(), y.end(), ','), y.end());
 
-	string name = "text" + x + y + ".txt";//название файла
+	string name = "text" + x + y + ".txt";//РЅР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р°
 	
 	ifstream f; 
 
-	f.open(name);//проверка файла на существование
+	f.open(name);//РїСЂРѕРІРµСЂРєР° С„Р°Р№Р»Р° РЅР° СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёРµ
 	if (!f.is_open()) { f.close(); return Triangle(); }
 	f.close();
 
-	f.open(name, ios::app);//открываем файл в режиме чтения
+	f.open(name, ios::app);//РѕС‚РєСЂС‹РІР°РµРј С„Р°Р№Р» РІ СЂРµР¶РёРјРµ С‡С‚РµРЅРёСЏ
 
-	int sc1,sc2;   //переменные в которую записывается содержимое файла
+	int sc1,sc2;  //РїРµСЂРµРјРµРЅРЅС‹Рµ РІ РєРѕС‚РѕСЂСѓСЋ Р·Р°РїРёСЃС‹РІР°РµС‚СЃСЏ СЃРѕРґРµСЂР¶РёРјРѕРµ С„Р°Р№Р»Р°
 	f >> sc1;
 	f >> sc2;
 	
-	f.close();//закрытие потока
+	f.close();//Р·Р°РєСЂС‹С‚РёРµ РїРѕС‚РѕРєР°
 	
 	Triangle tr;
 	try
