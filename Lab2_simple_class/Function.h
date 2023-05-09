@@ -2,5 +2,5 @@
 #pragma once
 #include "Class.h"
 
-void saveTriangle(Triangle a);
+int saveTriangle(Triangle a);
 Triangle loadTriangle(double a, double b);
