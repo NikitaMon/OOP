@@ -1,10 +1,13 @@
 #pragma once
+//Автор - Монастыршин Никита
+//я пытался разбить на h и cpp но всё ломалось
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <string>
+#include "Vector_f.h"
 
 using namespace std;
-
 // создание синонима для типа vector<int>
 using vector_int = vector<int>;
 // vector -- класс-обёртка для динамического массива
@@ -13,6 +16,17 @@ using vector_int = vector<int>;
 // Тип вложенных значений указывается внутри угловых скобок 
 // < > при объявлении переменой типа vector
 
+//создание имени для файла по всем элементам вектора
+string namefile(vector_int& v)
+{
+    string str = "";
+    for (int i = 0; i < v.size(); i++)
+    {
+        if (i == 255) return str;//максимальная длинна названия файла
+        str = str + to_string(v[i]);
+    }
+    return str;
+}
 
 /// вывод динамического массива
 void print_vector(const vector_int& v) {
@@ -47,37 +61,47 @@ int vec_sum(vector_int& v) {
 
 /*
 * запись в файл
+* -1 ошибка файл не открыт
+*  0 всё хорошо
 */
-void savevec(vector_int& v)
+int savevec(vector_int& v)
 {
-    string name = "text.txt";//название файла
+    string name = namefile(v) + ".txt";//название файла
 
     ofstream f;		//открываем файл в режиме записи
     f.open(name, ios::out);
-    if (!f.is_open()) { cout << "Ошибка"; return; }
+    if (!f.is_open()) { return -1; }
 
     for (int i = 0; i < v.size(); ++i)//цикл записи
         f << " " << v[i];
     f.close();//закрытие потока
+    return 0;
 }
 
 /*
 * чтение из файла
+* -1 ошибка файл не открыт
+*  0 всё хорошо
 */
-void loadvec(vector_int& v)
+int loadvec(vector_int& v, string name)
 {
-    string name = "text.txt";//название файла
+    name = name + ".txt";
     ifstream f; //открываем файл в режиме чтения
     int scan;   //переменная в которую записывается содержимое файла
     v.clear();//если чтото было очистит
 
     f.open(name, ios::app);
-    if (!f.is_open()) { cout << "Ошибка"; return; }
+    if (!f.is_open()) { return -1; }
 
     while (!f.eof())//пока не закончится файл читать или не найдёт число которое уже есть такое число
     {
         f >> scan;
-        v.push_back(scan);
+
+        v.push_back(scan);  //сделать resize изначально побольше и уже в конце цикла
+                            //сделать resize по колличеству итераций?
     }
     f.close();//закрытие потока
+    return 0;
 }
+
+
