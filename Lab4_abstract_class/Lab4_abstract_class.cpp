@@ -1,5 +1,10 @@
 ﻿#include <iostream>
-#include "Header.h"
+#define _USE_MATH_DEFINES
+#include <math.h>
+#include <iostream>
+
+
+#include "Figure.h"
 
 using namespace std;
 
