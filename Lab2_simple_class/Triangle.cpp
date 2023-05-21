@@ -1,5 +1,5 @@
 //Автор - Монастыршин Никита
-#include "Class.h"
+#include "Triangle.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
 

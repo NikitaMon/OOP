@@ -1,6 +1,6 @@
 ﻿//Автор - Монастыршин Никита
 #include <iostream>
-#include "Class.h"
+#include "Triangle.h"
 #include "Function.h"
 
 using namespace std;
