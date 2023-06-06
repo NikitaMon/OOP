@@ -16,6 +16,7 @@ using vector_int = vector<int>;
 // “ип вложенных значений указываетс€ внутри угловых скобок 
 // < > при объ€влении переменой типа vector
 
+/*
 //создание имени дл€ файла по всем элементам вектора
 string namefile(vector_int& v)
 {
@@ -26,7 +27,7 @@ string namefile(vector_int& v)
         str = str + to_string(v[i]);
     }
     return str;
-}
+}*/
 
 /// вывод динамического массива
 void print_vector(const vector_int& v) {
@@ -64,9 +65,10 @@ int vec_sum(vector_int& v) {
 * -1 ошибка файл не открыт
 *  0 всЄ хорошо
 */
-int savevec(vector_int& v)
+int savevec(vector_int& v, string name)
 {
-    string name = namefile(v) + ".txt";//название файла
+    //copy(v.begin(), v.end(), std::ostream_iterator<int>(cout, " "))
+    //string name = namefile(v) + ".txt";//название файла
 
     ofstream f;		//открываем файл в режиме записи
     f.open(name, ios::out);
@@ -85,7 +87,7 @@ int savevec(vector_int& v)
 */
 int loadvec(vector_int& v, string name)
 {
-    name = name + ".txt";
+    //name = name + ".txt";
     ifstream f; //открываем файл в режиме чтени€
     int scan;   //переменна€ в которую записываетс€ содержимое файла
     v.clear();//если чтото было очистит

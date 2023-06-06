@@ -25,28 +25,34 @@ public:
 	Triangle();
 	Triangle(double x1, double y1);
 	
+	void set_xy(double x, double y)
+	{
+		setX(x);
+		setY(y);
+		z = sqrt(x * x + y * y);
+	}
+
+	void setName(string n)
+	{
+		name = n;
+	}
 
 	//функци€ площади
-	double Area();
+	double Area() const;
 
 	//функци€ периметра
-	double Perimetr();
+	double Perimetr() const;
 
 	//гетеры
 	//если значение возвращаемое гетером слишком большое, 
 	//дл€ оптимизации программы возвращают не значение переменной а адрес
 	//и чтобы случайно не изменить значение приватной переменной с помощью гетера добавл€ют const
 	//что запретит подобные махинации
-	const double &getX() { return x; }
-	const double &getY() { return y; }
-	const double &getZ() { return z; }
-	const string &getName() { return name; }
+	double getX() const { return x; }
+	double getY() const { return y; }
+	double getZ() const { return z; }
+	string getName() const { return name; }
 	
-	/*
-	//пример плохого гетера
-	//(продолжение в Lab2_simple_class.cpp) 
-	double &getXadr() { return x; }
-	*/
 
 	//protected чтобы не вызывались в main
 protected:

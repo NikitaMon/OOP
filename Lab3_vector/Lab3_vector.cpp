@@ -23,10 +23,10 @@ int main() {
     rand_vector(arr);
     print_vector(arr);
     cout << "Сумма всех элементов - " << vec_sum(arr) << endl;
-    savevec(arr);//сохранение arr
+    savevec(arr, "vector_1.txt");//сохранение arr
 
     cout << "Вектор vec" << endl;
-    loadvec(vec, namefile(arr));//и загрузка из файла в vec
+    loadvec(vec, "vector_1.txt");//и загрузка из файла в vec
     print_vector(vec);
 
 

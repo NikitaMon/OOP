@@ -28,18 +28,18 @@ Triangle::Triangle(double x1, double y1)
 
 	//формула расчёта третьей стороны по 
 	//двум сторонам и углу между ними по теореме косинусов
-	//угол взят 90 градусов,  (M_PI / 180) - преобразование угла в нужную форму 
-	z = sqrt(x * x + y * y - 2 * x * y * cos(90 * M_PI / 180));
+	//угол взят 90 градусов, косинус 90 равен нулю поэтому часть уравнения упрощена 
+	z = sqrt(x * x + y * y);
 }
 
 //расчёт площади
-double Triangle::Area()
+double Triangle::Area() const
 {
 	return x * y / 2;
 }
 
 //расчёт периметра
-double Triangle::Perimetr()
+double Triangle::Perimetr() const
 {
 	return  x + y + z;
 }
